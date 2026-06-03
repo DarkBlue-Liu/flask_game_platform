@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}扫雷游戏{% endblock %}
+
+{% block content %}
+<div class="game-wrapper">
+    <div class="game-container">
+        <div class="game-header">
+            <div class="difficulty-selector">
+                <button class="diff-btn active" data-rows="9" data-cols="9" data-mines="10">初级</button>
+                <button class="diff-btn" data-rows="16" data-cols="16" data-mines="40">中级</button>
+                <button class="diff-btn" data-rows="16" data-cols="30" data-mines="99">高级</button>
+            </div>
+            
+            <div class="game-stats">
+                <div class="stat">
+                    <span class="label">💣 剩余雷数</span>
+                    <span class="value" id="mine-count">10</span>
+                </div>
+                <button class="btn" id="reset-btn">🔄 重置</button>
+                <div class="stat">
+                    <span class="label">⏱️ 时间</span>
+                    <span class="value" id="timer">0</span>
+                </div>
+            </div>
+        </div>
+        
+        <div id="game-board" class="game-board"></div>
+        
+        <div class="game-status" id="game-status"></div>
+    </div>
+    
+    <div class="leaderboards">
+        <h3>🏆 排行榜</h3>
+        <div class="leaderboard-tabs">
+            <button class="tab-btn active" data-difficulty="easy">初级榜</button>
+            <button class="tab-btn" data-difficulty="medium">中级榜</button>
+            <button class="tab-btn" data-difficulty="hard">高级榜</button>
+        </div>
+        <div class="leaderboard-content" id="leaderboard-content"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/minesweeper.js') }}"></script>
+{% endblock %}

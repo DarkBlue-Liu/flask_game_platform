@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}个人中心 - 扫雷游戏{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <h2>个人中心</h2>
+    <div class="profile-info">
+        <div class="avatar-box">
+            <span class="avatar">{{ current_user.username[0]|upper }}</span>
+        </div>
+        <div class="info-box">
+            <p><strong>用户名：</strong>{{ current_user.username }}</p>
+            <p><strong>总游玩局数：</strong>{{ current_user.total_games }}</p>
+            <p><strong>胜利局数：</strong>{{ current_user.wins }}</p>
+        </div>
+    </div>
+    
+    <div class="theme-settings">
+        <h3>主题设置</h3>
+        <div class="theme-options">
+            <button class="theme-btn {% if current_user.theme == 'classic' %}active{% endif %}" data-theme="classic">
+                🎮 经典复古风
+            </button>
+            <button class="theme-btn {% if current_user.theme == 'modern' %}active{% endif %}" data-theme="modern">
+                ✨ 现代扁平风
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.querySelectorAll('.theme-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const theme = this.dataset.theme;
+        fetch('/api/set_theme', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ theme: theme })
+        }).then(() => {
+            document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+});
+</script>
+{% endblock %}
