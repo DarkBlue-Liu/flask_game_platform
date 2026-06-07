@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 扫雷游戏平台
 
 一个功能完整的扫雷游戏平台，包含用户系统、成绩记录和排行榜功能。
@@ -107,3 +108,7 @@ flask_game_platform/
 7. **切换主题**：在个人中心可切换经典/现代主题
 
 祝游戏愉快！🎉
+=======
+# flask_game_platform
+Final_Comprehensive_Project
+>>>>>>> 74adb02fd85be97e7732e775cc52f20ed899c1ca
